@@ -14,6 +14,7 @@ import com.google.common.io.Resources;
 import com.graphhopper.jsprit.core.problem.vehicle.VehicleImpl.Builder;
 import com.graphhopper.jsprit.core.algorithm.VehicleRoutingAlgorithm;
 import com.graphhopper.jsprit.core.algorithm.box.Jsprit;
+import com.graphhopper.jsprit.core.algorithm.termination.PrematureAlgorithmTermination;
 import com.graphhopper.jsprit.core.problem.Location;
 import com.graphhopper.jsprit.core.problem.VehicleRoutingProblem;
 import com.graphhopper.jsprit.core.problem.job.Pickup;
@@ -39,7 +40,7 @@ public class GoogleHashCode {
 
         List<Ride> allRides = new ArrayList<>();
         
-        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("b_should_be_easy.in").getFile()));
+        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("c_no_hurry.in").getFile()));
         String line = targetBF.readLine();
         String grid[] = line.split(" ");
         int R = Integer.valueOf(grid[0]);
@@ -59,7 +60,7 @@ public class GoogleHashCode {
             int y = Integer.valueOf(rides[3]);
             int s = Integer.valueOf(rides[4]);
             int t = Integer.valueOf(rides[5]);
-            Ride ride = new Ride(a, b, x, y, s, t);
+            Ride ride = new Ride(a, b, x, y, s, t, 0);
             allRides.add(ride);
             
             
@@ -91,10 +92,11 @@ public class GoogleHashCode {
         	allVehicles.add(vehicle);
         }
         
+        System.out.println(allVehicles.size());
         
         List<Shipment> allShipments = new ArrayList<>();
         
-        int count = 1;
+        int count = 0;
         for (Ride ride : allRides) {
 
         	com.graphhopper.jsprit.core.problem.job.Shipment.Builder builder = Shipment.Builder.newInstance(String.valueOf(count))
@@ -123,7 +125,7 @@ public class GoogleHashCode {
         	vrpBuilder.addJob(shipment);
         }
         
-        vrpBuilder.setFleetSize(VehicleRoutingProblem.FleetSize.FINITE);
+        vrpBuilder.setFleetSize(VehicleRoutingProblem.FleetSize.INFINITE);
         vrpBuilder.setRoutingCost(new ManhattanCosts());
         VehicleRoutingProblem problem = vrpBuilder.build();
 
@@ -131,7 +133,7 @@ public class GoogleHashCode {
          * get the algorithm out-of-the-box.
 		 */
         VehicleRoutingAlgorithm algorithm = Jsprit.createAlgorithm(problem);
-
+        algorithm.setMaxIterations(1);
 		/*
          * and search a solution
 		 */

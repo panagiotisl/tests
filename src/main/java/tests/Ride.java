@@ -8,8 +8,9 @@ public class Ride {
 	private int y;
 	private int s;
 	private int f;
+	private int id;
 
-	public Ride(int a, int b, int x, int y, int s, int f) {
+	public Ride(int a, int b, int x, int y, int s, int f, int id) {
 
 		this.setA(a);
 		this.setB(b);
@@ -17,7 +18,7 @@ public class Ride {
 		this.setY(y);
 		this.setS(s);
 		this.setF(f);
-		
+		this.setId(id);
 	}
 
 	public int getA() {
@@ -68,4 +69,17 @@ public class Ride {
 		this.f = f;
 	}
 
+	public int getManhattanDistance() {
+		return Math.abs(this.a - this.x) + Math.abs(this.b - this.y);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }
