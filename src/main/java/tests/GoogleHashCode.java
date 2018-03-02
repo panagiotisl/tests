@@ -1,4 +1,4 @@
-package tests;
+/*package tests;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -70,18 +70,11 @@ public class GoogleHashCode {
         
         
 
-		/*
-         * get a vehicle type-builder and build a type with the typeId "vehicleType" and one capacity dimension, i.e. weight, and capacity dimension value of 2
-		 */
         final int WEIGHT_INDEX = 0;
         VehicleTypeImpl.Builder vehicleTypeBuilder = VehicleTypeImpl.Builder.newInstance("vehicleType")
             .addCapacityDimension(WEIGHT_INDEX, 1).setCostPerWaitingTime(1.);
         VehicleType vehicleType = vehicleTypeBuilder.build();
 
-		/*
-         * get a vehicle-builder and build a vehicle located at (10,10) with type "vehicleType"
-		 */
-        
         List<VehicleImpl> allVehicles = new ArrayList<>();
         
         for (int i = 0 ; i < F ; i++) {
@@ -129,19 +122,10 @@ public class GoogleHashCode {
         vrpBuilder.setRoutingCost(new ManhattanCosts());
         VehicleRoutingProblem problem = vrpBuilder.build();
 
-		/*
-         * get the algorithm out-of-the-box.
-		 */
         VehicleRoutingAlgorithm algorithm = Jsprit.createAlgorithm(problem);
         algorithm.setMaxIterations(1);
-		/*
-         * and search a solution
-		 */
         Collection<VehicleRoutingProblemSolution> solutions = algorithm.searchSolutions();
 
-		/*
-         * get the best
-		 */
         VehicleRoutingProblemSolution bestSolution = Solutions.bestOf(solutions);
 
 //        new VrpXMLWriter(problem, solutions).write("output/problem-with-solution.xml");
@@ -150,4 +134,4 @@ public class GoogleHashCode {
 
     }
 
-}
+}*/

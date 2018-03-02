@@ -3,6 +3,7 @@ package tests;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class GoogleHashCode2 {
 
         List<Ride> allRides = new ArrayList<>();
         
-        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("e_high_bonus.in").getFile()));
+        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("a_example.in").getFile()));
         String line = targetBF.readLine();
         String grid[] = line.split(" ");
         int R = Integer.valueOf(grid[0]);
@@ -87,17 +88,18 @@ public class GoogleHashCode2 {
         	}
         	
         }
-
-        for (MyVehicle vehicle : allVehicles){
-    		List<Integer> rides = vehicle.assignedRides;
-    		StringBuilder sb = new StringBuilder();
-    		sb.append(rides.size());
-    		for (Integer ride : rides) {
-    			sb.append(" " + ride);
-    		}
-    		System.out.println(sb.toString());
-    	}
-    	
+        
+        try (PrintWriter out = new PrintWriter("a_result.txt")) {
+	        for (MyVehicle vehicle : allVehicles){
+	    		List<Integer> rides = vehicle.assignedRides;
+	    		StringBuilder sb = new StringBuilder();
+	    		sb.append(rides.size());
+	    		for (Integer ride : rides) {
+	    			sb.append(" " + ride);
+	    		}
+	    		out.println(sb.toString());
+	    	}
+        }
         
         
     }
