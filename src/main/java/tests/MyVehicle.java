@@ -38,6 +38,8 @@ public class MyVehicle {
 		if (ride.getS() > freeAt)
 			freeAt = ride.getS();
 		freeAt += ride.getManhattanDistance() + 1;
+		location.setLeft(ride.getX());
+		location.setRight(ride.getY());
 	}
 	
 	public int getId() {

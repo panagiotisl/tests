@@ -17,7 +17,7 @@ public class GoogleHashCode2 {
 
         List<Ride> allRides = new ArrayList<>();
         
-        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("a_example.in").getFile()));
+        BufferedReader targetBF = new BufferedReader(new FileReader(Resources.getResource("e_high_bonus.in").getFile()));
         String line = targetBF.readLine();
         String grid[] = line.split(" ");
         int R = Integer.valueOf(grid[0]);
@@ -89,7 +89,7 @@ public class GoogleHashCode2 {
         	
         }
         
-        try (PrintWriter out = new PrintWriter("a_result.txt")) {
+        try (PrintWriter out = new PrintWriter("e_result.txt")) {
 	        for (MyVehicle vehicle : allVehicles){
 	    		List<Integer> rides = vehicle.assignedRides;
 	    		StringBuilder sb = new StringBuilder();
